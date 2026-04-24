@@ -1000,9 +1000,11 @@ function setLang(lang) {
       if (text) el.textContent = text;
     }
   });
-  var url = new URL(window.location.href);
-  if (lang === 'fr') { url.searchParams.set('lang', 'fr'); } else { url.searchParams.delete('lang'); }
-  window.history.replaceState({}, '', url.toString());
+  if (clientMode) {
+    var url = new URL(window.location.href);
+    url.searchParams.set('lang', lang === 'fr' ? 'fr' : 'en');
+    window.history.replaceState({}, '', url.toString());
+  }
 }
 
 // PDF Export
